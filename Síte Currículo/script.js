@@ -4,7 +4,7 @@
 //Entrada dos dados
 var nome = "Valdecir";
 var idade = 45;
-var senha = "99999";
+var senha = "999999";
 
 //estrutura de condição
 if(idade > 17){
