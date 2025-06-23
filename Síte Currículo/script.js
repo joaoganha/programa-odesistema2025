@@ -1,5 +1,5 @@
 //alert("Olá mundo!");
-
+//feito em casa
 //Uma variável guarda algum valor temporariamente
 //Entrada dos dados
 var nome = "Valdecir";
