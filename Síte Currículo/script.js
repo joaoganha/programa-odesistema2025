@@ -6,6 +6,11 @@ var nome = "Valdecir";
 var idade = 45;
 var senha = "999999";
 
+//registrando alteração
+//enviando alteração pro github com o visual estúdio
+//alterado no GIT
+//feito alteração
+
 //estrutura de condição
 if(idade > 17){
     //alert("Pode votar! "+ nome);
