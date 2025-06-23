@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap');
+body{
+font-family: "Jacquard 24", system-ui;    
+}
+
+.quadrado{
+    width: 200px; /*largura do quadrado*/
+    height: 200px; /*altura do quadrado*/
+    text-align: center; /*centralizar*/
+    font-size: 180px; /*tamanho da fonte*/
+    border-radius: 12px; /*arredondar*/
+    background-color: black;
+    color: rgba(194, 194, 179, 0.932); /*cor da letra*/
+}
+
+.painel{
+    background-color: indigo;
+    max-width: 1000px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+
+
+}
+.jogo{
+    margin-left: auto;
+    margin-right: auto;
+}
