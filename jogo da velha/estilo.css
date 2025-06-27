@@ -14,16 +14,53 @@ font-family: "Jacquard 24", system-ui;
 }
 
 .painel{
-    background-color: indigo;
-    max-width: 1000px;
+    background-color: rgba(255, 255, 0, 0.459);
+    width: 900px;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 30px;
-
+    /*margin-left: auto;
+    margin-right: auto; */
+    padding: 10px;
+    
 
 }
 .jogo{
     margin-left: auto;
     margin-right: auto;
+    border: none;
+}
+
+.botão{
+    background-color: rgba(252, 55, 55, 0.932);
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.botão:hover{
+    background-color: rgb(184, 74, 143);
+    color: bisque;
+    transition: 1s;
+}
+
+body{
+    background-image: url(https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg);
+    background-size: cover;
+
+    display: flex;
+    justify-content: center; /*alinhar esquerda direita no centro*/
+    align-items: center;   /*alinhar acima abaixo no centro*/
+    height: 100vh;
+    flex-wrap: wrap
+
+}
+
+@media(max-width: 1050px){
+    .quadrado{
+        width:100px;
+        height: 100px;
+        font-size: 70px;
+
+    }
 }
