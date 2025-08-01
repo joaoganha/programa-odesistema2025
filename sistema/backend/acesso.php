@@ -14,5 +14,12 @@
     //imprime o nome da pessoa, se achar no banco
     echo $coluna['nome'];
 
+    if(mysqli_num_rows($resultado) > 0) {
+        header('location:../principal.php');
+    } else{
+        header('location:../index.php');
+    }
+ 
+
 
 ?>
