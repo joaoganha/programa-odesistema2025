@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="./recursos/particle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 
@@ -21,6 +22,28 @@
       <i class="fa-solid fa-circle-user"></i>
       <h3> Login:</h3>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <?php
+    //se existir o erro na requisição, exibe a mensagem de erro
+    if(isset($_GET['erro']) && $_GET['erro'] == 1) {
+      echo "<p style='color:brown;' class='text-center'> CPF ou senha inválidos! </p>";
+      echo" <script>
+        // Create an instance of Notyf
+var notyf = new Notyf({ duration: 3000,
+  position: {
+    x: 'right',
+    y: 'top',
+  },
+
+
+
+    });
+
+// Display an error notification
+notyf.error('Login e senha inválidos!');
+      </script>";
+    }
+    ?>
     <form action="./backend/acesso.php" method="post">
           <div class="mb-3">
             <label class="form-label"> CPF </label>
@@ -28,13 +51,13 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Senha</label>
-            <div class="input-group">
-              <input name="senha" type="password" class="form-control" id="senha">
-            <span onclick="visualizar()" style="cursor: pointer;" class="input-group-text"> 
-                <i id="olho" class="fa-solid fa-eye"></i>
-               </span>
-            </div>
+            <label for="senha" class="form-label">Senha</label>
+    <div class="input-group">
+          <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha">
+          <button class="btn btn-outline-secondary" type="button" id="toggleSenha">
+        <i class="fa fa-eye" id="iconeOlho"></i>
+            </button>
+          </div>
           </div>
 
           <button type="submit" class="btn btn-primary botao"> Entrar </button>
@@ -55,6 +78,8 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
   <script src="script.js"></script>
 
 </body>

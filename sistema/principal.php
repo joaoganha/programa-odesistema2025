@@ -56,6 +56,10 @@
 
         <div class="col-2 menu"> 
           <ul class="menu">
+            <
+            <p style="color:white;">
+               Bem vindo(a) <?php session_start(); echo $_SESSION['nome'];?>
+               </p>
             <li> <a href="#" class="menu-item"> <i class="fa-solid fa-user"></i> Usuário </a> </li>
             <li> <a href="#" class="menu-item"> <i class="fa-solid fa-globe"></i> Regiões </a> </li>
             <li> <a href="#" class="menu-item"> <i class="fa-solid fa-tree-city"></i> Cidades </a> </li>
