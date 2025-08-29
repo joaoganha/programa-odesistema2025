@@ -2,17 +2,17 @@
 include 'backend/conexao.php';
 include 'backend/validacao.php';
 
-$destino = 'backend/cidade/inserir.php';
+$destino = 'backend/area/inserir.php';
 
 //verifica se existe o id na requisição
 //se for diferente de vazio, sse tiver id na URL
 if(!empty($_GET['id'])){
   $id = $_GET['id'];
-  $sql = "SELECT * FROM cidade WHERE id='$id'";
+  $sql = "SELECT * FROM area WHERE id='$id'";
   // Executa o comando
   $dados = mysqli_query($conexao, $sql);
-  $cidades = mysqli_fetch_assoc($dados);
-  $destino = 'backend/cidade/alterar.php';
+  $areas = mysqli_fetch_assoc($dados);
+  $destino = 'backend/area/alterar.php';
 }
 ?>
 
@@ -102,7 +102,6 @@ notyf.success(' ".$_SESSION['mensagem']." ');
                </p>
             <li> <a href="principal.php" class="menu-item"> <i class="fa-solid fa-user"></i> Usuário </a> </li>
             <li> <a href="regiao.php" class="menu-item"> <i class="fa-solid fa-globe"></i> Regiões </a> </li>
-            <li> <a href="cidade.php" class="menu-item"> <i class="fa-solid fa-tree-city"></i> Cidades </a> </li>
             <li> <a href="ponto_focal.php" class="menu-item"> <i class="fa-solid fa-user-tie"></i> Pontos Focais </a> </li>
             <li> <a href="area.php" class="menu-item"> <i class="fa-solid fa-graduation-cap"></i> Áreas </a> </li>
             <li> <a href="venda.php" class="menu-item"> <i class="fa-regular fa-money-bill-1" style="color: #63E6BE;"></i> Efetuar Venda </a> </li>
@@ -116,42 +115,19 @@ notyf.success(' ".$_SESSION['mensagem']." ');
           <form action="<?= $destino ?>" method="post">
           <div class="mb-3">
             <label class="form-label"> Id </label>
-            <input readonly name="id" type="text" value="<?php echo isset($cidades) ? $cidades['id']: "" ?>" class="form-control">
+            <input readonly name="id" type="text" value="<?php echo isset($areas) ? $areas['id']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> Nome </label>
-            <input name="nome" type="text" autofocus value="<?php echo isset($cidades) ? $cidades['nome']: "" ?>" class="form-control">
+            <input name="nome" type="text" autofocus value="<?php echo isset($areas) ? $areas['nome']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
-            <label class="form-label"> Cep </label>
-            <input name="cep" type="text" autofocus value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control cep">
+            <label class="form-label"> Número </label>
+            <input name="numero" type="text" autofocus value="<?php echo isset($areas) ? $areas['numero']: "" ?>" class="form-control">
           </div>
 
-          <div class="mb-3">
-            <label class="form-label"> Estado </label>
-            <input name="estado" type="text" autofocus value="<?php echo isset($cidades) ? $cidades['estado']: "" ?>" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label> Região </label>
-            <select name="regiao" class="form-select" required>
-              <option> Selecione uma região </option>
-              <?php
-              $sql = "SELECT * FROM regiao ORDER BY nome";
-              $resultado = mysqli_query($conexao, $sql);
-              $regiaoSelecionada = isset($cidades) ? $cidades['id_regiao_fk']: '';
-
-              while($reg = mysqli_fetch_assoc($resultado)){
-                $selecao = ($reg['id'] == $regiaoSelecionada) ? 'selected' : '';
-                echo "<option value='{$reg['id']}' $selecao> {$reg['nome']} </option>";
-              }
-
-
-              ?>
-            </select>
-          </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>
           </form>
@@ -166,19 +142,14 @@ notyf.success(' ".$_SESSION['mensagem']." ');
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nome</th>
-      <th scope="col">cep</th>
-      <th scope="col">estado</th>
-      <th scope="col">id_regiao_fk</th>
+      <th scope="col">Número</th>
       <th scope="col">Opções</th>
-
-      
-
 
     </tr>
   </thead>
   <tbody>
   <?php
-    $sql = "SELECT * FROM cidade";
+    $sql = "SELECT * FROM area";
     // Executa o comando
     $dados = mysqli_query($conexao, $sql);
     //percorrer todos os registrosdo banco de dados
@@ -187,17 +158,11 @@ notyf.success(' ".$_SESSION['mensagem']." ');
     <tr>
       <th scope="row"> <?php echo $coluna['id'] ?></th>
       <td> <?php echo $coluna['nome'] ?></td>
-      <td> <?php echo $coluna['cep'] ?></td>
-      <td> <?php echo $coluna['estado'] ?></td>
-      <?php 
-      $sql = "SELECT nome FROM regiao WHERE id = {$coluna['id_regiao_fk']}";
-      $resultado = mysqli_query($conexao, $sql);
-      $regiao = mysqli_fetch_assoc($resultado);
-      ?>
-      <td> <?php echo $regiao['nome'] ?> </td>
+      <td> <?php echo $coluna['numero'] ?></td>
+    
       <td> 
-                <a href="./cidade.php?id=<?= $coluna['id']  ?>"> <i class="fa-solid fa-pen-to-square" style="color: blue;"></i> </a>  
-                <a href="<?php echo "./backend/cidade/excluir.php?id=".$coluna['id'] ?>"onclick="return confirm('Deseja realmente excluir?   ')"> <i class="fa-solid fa-trash ms-2" style="color: #ff0000;"></i> </a>  
+                <a href="./area.php?id=<?= $coluna['id']  ?>"> <i class="fa-solid fa-pen-to-square" style="color: blue;"></i> </a>  
+                <a href="<?php echo "./backend/area/excluir.php?id=".$coluna['id'] ?>"onclick="return confirm('Deseja realmente excluir?   ')"> <i class="fa-solid fa-trash ms-2" style="color: #ff0000;"></i> </a>  
       </td>
 
     </tr>

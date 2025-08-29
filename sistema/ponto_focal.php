@@ -11,7 +11,7 @@ if(!empty($_GET['id'])){
   $sql = "SELECT * FROM ponto_focal WHERE id='$id'";
   // Executa o comando
   $dados = mysqli_query($conexao, $sql);
-  $ponto_focals = mysqli_fetch_assoc($dados);
+  $ponto_focal = mysqli_fetch_assoc($dados);
   $destino = 'backend/ponto_focal/alterar.php';
 }
 ?>
@@ -104,24 +104,64 @@ notyf.success(' ".$_SESSION['mensagem']." ');
             <li> <a href="regiao.php" class="menu-item"> <i class="fa-solid fa-globe"></i> Regiões </a> </li>
             <li> <a href="cidade.php" class="menu-item"> <i class="fa-solid fa-tree-city"></i> Cidade </a> </li>
             <li> <a href="ponto_focal.php" class="menu-item"> <i class="fa-solid fa-user-tie"></i> Pontos Focais </a> </li>
-            <li> <a href="#" class="menu-item"> <i class="fa-solid fa-graduation-cap"></i> Áreas </a> </li>
-            <li> <a href="#" class="menu-item"> <i class="fa-regular fa-money-bill-1" style="color: #63E6BE;"></i> Efetuar Venda </a> </li>
-            <li> <a href="#" class="menu-item"> <i class="fa-solid fa-magnifying-glass-location" style="color: #0d0d0d;"></i> Pesquisar Vendas </a> </li>
+            <li> <a href="area.php" class="menu-item"> <i class="fa-solid fa-graduation-cap"></i> Áreas </a> </li>
+            <li> <a href="venda.php" class="menu-item"> <i class="fa-regular fa-money-bill-1" style="color: #63E6BE;"></i> Efetuar Venda </a> </li>
+            <li> <a href="" class="menu-item"> <i class="fa-solid fa-magnifying-glass-location" style="color: #0d0d0d;"></i> Pesquisar Vendas </a> </li>
           </ul>
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
           <h1> Cadastro </h1>
 
           <form action="<?= $destino ?>" method="post">
           <div class="mb-3">
             <label class="form-label"> Id </label>
-            <input readonly name="id" type="text" value="<?php echo isset($ponto_focals) ? $ponto_focals['id']: "" ?>" class="form-control">
+            <input readonly name="id" type="text" value="<?php echo isset($ponto_focal) ? $ponto_focal['id']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="text" autofocus value="<?php echo isset($ponto_focals) ? $ponto_focals['nome']: "" ?>" class="form-control">
+            <input name="nome" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['nome']: "" ?>" class="form-control">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Razão Social</label>
+            <input name="razao_social" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['razao_social']: "" ?>" class="form-control">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Tipo </label>
+            <input name="tipo" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['tipo']: "" ?>" class="form-control">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Cnpj/Cpf </label>
+            <input name="cnpj_cpf" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['cnpj_cpf']: "" ?>" class="form-control cnpj">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Endereço </label>
+            <input name="endereco" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['endereco']: "" ?>" class="form-control">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Telefone </label>
+            <input name="telefone" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['telefone']: "" ?>" class="form-control phone_with_ddd">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Celular </label>
+            <input name="celular" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['celular']: "" ?>" class="form-control celular">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> E-mail </label>
+            <input name="email" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['email']: "" ?>" class="form-control">
+          </div>
+
+           <div class="mb-3">
+            <label class="form-label"> Id_cidade_fk </label>
+            <input name="id_cidade_fk" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['id_cidade_fk']: "" ?>" class="form-control">
           </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>
@@ -129,18 +169,26 @@ notyf.success(' ".$_SESSION['mensagem']." ');
         </div>
         
         
-        <div class="col-7">
+        <div class="col-8">
           <h1> Listagem </h1>
 
           <table id="Tabela" class="table table-striped table-bordered">
   <thead class="table-primary">
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nome</th>
-      <th scope="col">cep</th>
-      <th scope="col">estado</th>
-      <th scope="col">id_regiao_fk</th>
-      <th scope="col">Opções</th>
+      <th scope="col">id</th>
+      <th scope="col">nome</th>
+      <th scope="col">razao_social</th>
+      <th scope="col">tipo</th>
+      <th scope="col">cnpj_cpf</th>
+      <th scope="col">endereco</th>
+      <th scope="col">telefone</th>
+      <th scope="col">celular</th>
+      <th scope="col">email</th>
+      <th scope="col">id_cidade_fk</th>
+      <th scope="col">opções</th>
+
+
+
 
       
 
@@ -158,9 +206,16 @@ notyf.success(' ".$_SESSION['mensagem']." ');
     <tr>
       <th scope="row"> <?php echo $coluna['id'] ?></th>
       <td> <?php echo $coluna['nome'] ?></td>
-      <td> <?php echo $coluna['cep'] ?></td>
-      <td> <?php echo $coluna['estado'] ?></td>
-      <td> <?php echo $coluna['id_regiao_fk'] ?></td>
+      <td> <?php echo $coluna['razao_social'] ?></td>
+      <td> <?php echo $coluna['tipo'] ?></td>
+      <td> <?php echo $coluna['cnpj_cpf'] ?></td>
+      <td> <?php echo $coluna['endereco'] ?></td>
+      <td> <?php echo $coluna['telefone'] ?></td>
+      <td> <?php echo $coluna['celular'] ?></td>
+      <td> <?php echo $coluna['email'] ?></td>
+      <td> <?php echo $coluna['id_cidade_fk'] ?></td>
+      
+
 
 
        <td> 

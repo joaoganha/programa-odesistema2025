@@ -7,7 +7,7 @@ $sql = "DELETE FROM regiao WHERE id = '$id' ";
 $resultado = mysqli_query($conexao, $sql);
 
 session_start();
-$_SESSION['mensagem'] = "Excluído com sucesso!"; 
+$_SESSION['mensagem'] = "$id Excluído com sucesso!"; 
 
 // Redirecionar para a página principal após a exclusão
 header('Location:../../regiao.php');
