@@ -120,7 +120,7 @@ notyf.success(' ".$_SESSION['mensagem']." ');
           </div>
 
           <div class="mb-3">
-            <label class="form-label"> nome </label>
+            <label class="form-label"> Nome </label>
             <input name="nome" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['nome']: "" ?>" class="form-control">
           </div>
 
@@ -131,7 +131,11 @@ notyf.success(' ".$_SESSION['mensagem']." ');
 
            <div class="mb-3">
             <label class="form-label"> Tipo </label>
-            <input name="tipo" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['tipo']: "" ?>" class="form-control">
+            <select class="form-select" name="tipo" aria-label="Default select example">
+              <option selected> Selecione o Tipo </option>
+              <option value="Publica" <?php echo isset($ponto_focal) && $ponto_focal['tipo'] == 'Publica' ? 'selected' : '' ?>> Pública </option>
+              <option value="Privada" <?php echo isset($ponto_focal) && $ponto_focal['tipo'] == 'Privada' ? 'selected' : '' ?>> Privada </option>
+              
           </div>
 
            <div class="mb-3">
@@ -159,9 +163,22 @@ notyf.success(' ".$_SESSION['mensagem']." ');
             <input name="email" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['email']: "" ?>" class="form-control">
           </div>
 
-           <div class="mb-3">
-            <label class="form-label"> Id_cidade_fk </label>
-            <input name="id_cidade_fk" type="text" autofocus value="<?php echo isset($ponto_focal) ? $ponto_focal['id_cidade_fk']: "" ?>" class="form-control">
+          
+<div class="mb-3">
+            <label> cidade </label>
+            <select name="cidade" class="form-select" required>
+              <option> Selecione uma cidade </option>
+              <?php 
+                $sql = "SELECT * FROM cidade ORDER BY nome";
+                $resultado = mysqli_query($conexao, $sql);
+                $cidadeSelecionada = isset($pontoFocals) ? $pontoFocals['id_cidade_fk']: '';
+
+                while($reg = mysqli_fetch_assoc($resultado)){
+                  $selecao = ($reg['id'] == $cidadeSelecionada) ? 'selected' : '';
+                  echo "<option value='{$reg['id']}' $selecao> {$reg['nome']} </option>";
+                }
+              ?>
+            </select>
           </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>
@@ -175,17 +192,17 @@ notyf.success(' ".$_SESSION['mensagem']." ');
           <table id="Tabela" class="table table-striped table-bordered">
   <thead class="table-primary">
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">nome</th>
-      <th scope="col">razao_social</th>
-      <th scope="col">tipo</th>
-      <th scope="col">cnpj_cpf</th>
-      <th scope="col">endereco</th>
-      <th scope="col">telefone</th>
-      <th scope="col">celular</th>
-      <th scope="col">email</th>
-      <th scope="col">id_cidade_fk</th>
-      <th scope="col">opções</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Razao_social</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Cnpj_cpf</th>
+      <th scope="col">Endereco</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Email</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">Opções</th>
 
 
 
@@ -213,7 +230,13 @@ notyf.success(' ".$_SESSION['mensagem']." ');
       <td> <?php echo $coluna['telefone'] ?></td>
       <td> <?php echo $coluna['celular'] ?></td>
       <td> <?php echo $coluna['email'] ?></td>
-      <td> <?php echo $coluna['id_cidade_fk'] ?></td>
+      
+      <?php 
+                $sql = "SELECT * FROM cidade WHERE id=".$coluna['id_cidade_fk'];
+                $resultado = mysqli_query($conexao, $sql);
+                $cidade = mysqli_fetch_assoc($resultado);
+              ?>
+              <td> <?php echo $cidade['nome'] ?> </td>
       
 
 

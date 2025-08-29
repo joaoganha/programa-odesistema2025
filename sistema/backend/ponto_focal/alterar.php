@@ -11,7 +11,7 @@ $endereco = $_REQUEST['endereco'];
 $telefone = $_REQUEST['telefone'];
 $celular = $_REQUEST['celular'];
 $email = $_REQUEST['email'];
-$id_cidade_fk = $_REQUEST['id_cidade_fk'];
+$id_cidade_fk = $_REQUEST['cidade'];
 
 
 
