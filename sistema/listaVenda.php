@@ -36,6 +36,20 @@
     <link rel="stylesheet" href="./recursos/particle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="estilo.css">
+
+    <style>
+      button{
+        background-color: #097016ff;
+        margin-bottom: 15px;
+        margin-right: 8px;
+        color: white;
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+      }
+      #Tabela{
+        margin-top: 8px;}
+    </style>
 </head>
 
 <body class="container-fluid">
@@ -133,7 +147,7 @@
       </table>
     </div>
 
-
+<a href="./principal.php" class="btn btn-success" style="width: 80px;"> Voltar </a>
 
   </div>
   
@@ -145,7 +159,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="script.js"></script>
 
     <script>
     //se tiver alteração no campo região, dispara essa função
@@ -167,7 +180,14 @@
         $('#ponto_focal_id').html(data); });
       });
 
-      var tabela = $('#Tabela').DataTable();
+      var tabela = $('#Tabela').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'excel', 'pdf', 'print'],
+        responsive: true,
+        language: {
+          url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json'
+        },
+      });
 
       $('#regiao_id').on('change', function(){
         var texto = $('#regiao_id option:selected').text();
@@ -191,6 +211,14 @@
 
 
   </script>
+
+
+ <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
 </body>
 
